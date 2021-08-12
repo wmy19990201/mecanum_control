@@ -27,7 +27,7 @@ def encode_array_0812(wheel_ctrl):
         return result
     
     #加入电机号、起始位（127）、终止位(126)
-    encode_array = [127, 0, encode_spd_0812(wheel_ctrl[0]), 1, encode_spd_0812(wheel_ctrl[1]), 2, encode_spd_0812(wheel_ctrl[2]), 3, encode_spd_0812(wheel_ctrl[3]), 126]
+    encode_array = [127, encode_spd_0812(wheel_ctrl[0]), encode_spd_0812(wheel_ctrl[1]), encode_spd_0812(wheel_ctrl[2]), encode_spd_0812(wheel_ctrl[3]), 126]
     return encode_array         
     
         
@@ -109,7 +109,7 @@ class send_data:
         self.arduino.flushOutput()
         
     def send_msg(self):
-        for j in range(10):          
+        for j in range(6):          
             self.arduino.write(chr(self.data[j]).encode("utf-8"))
             time.sleep(0.01)
         print("data sent")
@@ -151,3 +151,4 @@ if __name__ == '__main__':
         ser.intereption()
         
     
+
